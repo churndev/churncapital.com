@@ -2,26 +2,83 @@
   "use strict";
 
   var WIDTHS = [1280, 1920, 2560, 3840];
-  var DWELL_MS = 45000;
   var FADE_MS = 1500;
-  var STORAGE_KEY = "wallpaper-theme";
-  var THEMES = ["florida", "ocean", "mountains", "space", "city"];
+  var THEME_KEY = "wallpaper-theme";
+  var INTERVAL_KEY = "wallpaper-interval";
+  var THEME_NAMES = ["florida", "ocean", "mountains", "space", "city"];
+  var THEMES = ["random"].concat(THEME_NAMES);
   var COUNT = 4;
+  var INTERVALS = {
+    "1": 60000,
+    "3": 180000,
+    "5": 300000,
+    "10": 600000,
+    "30": 1800000,
+    "60": 3600000,
+    "never": 0
+  };
 
-  function preferredTheme() {
+  function stored(key, allowed, fallback) {
     try {
-      var saved = localStorage.getItem(STORAGE_KEY);
-      if (THEMES.indexOf(saved) !== -1) return saved;
+      var saved = localStorage.getItem(key);
+      if (allowed.indexOf(saved) !== -1) return saved;
     } catch (err) {}
-    return "florida";
+    return fallback;
   }
 
   function idOf(n) {
     return n < 10 ? "0" + n : String(n);
   }
 
-  var theme = preferredTheme();
-  var index = 0;
+  function samePhoto(a, b) {
+    return !!(a && b && a.theme === b.theme && a.n === b.n);
+  }
+
+  function allPhotos() {
+    var list = [];
+    for (var t = 0; t < THEME_NAMES.length; t++) {
+      for (var n = 1; n <= COUNT; n++) list.push({ theme: THEME_NAMES[t], n: n });
+    }
+    return list;
+  }
+
+  function shuffle(list) {
+    for (var i = list.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = list[i];
+      list[i] = list[j];
+      list[j] = tmp;
+    }
+    return list;
+  }
+
+  var deck = [];
+  var deckAt = 0;
+
+  function refillDeck(avoid) {
+    deck = shuffle(allPhotos());
+    deckAt = 0;
+    if (samePhoto(deck[0], avoid) && deck.length > 1) {
+      var j = 1 + Math.floor(Math.random() * (deck.length - 1));
+      var tmp = deck[0];
+      deck[0] = deck[j];
+      deck[j] = tmp;
+    }
+  }
+
+  function takeRandom(avoid) {
+    if (deckAt >= deck.length) refillDeck(avoid);
+    return deck[deckAt++];
+  }
+
+  function beginRandom(avoid) {
+    refillDeck(avoid);
+    return deck[deckAt++];
+  }
+
+  var theme = stored(THEME_KEY, THEMES, "random");
+  var interval = stored(INTERVAL_KEY, Object.keys(INTERVALS), "3");
+  var current = null;
   var shown = 0;
   var token = 0;
   var timer = 0;
@@ -30,8 +87,10 @@
     document.getElementById("slide-a"),
     document.getElementById("slide-b")
   ];
-  var select = document.getElementById("theme");
-  select.value = theme;
+  var themeSelect = document.getElementById("theme");
+  var intervalSelect = document.getElementById("interval");
+  themeSelect.value = theme;
+  intervalSelect.value = interval;
 
   function srcset(themeName, n, ext) {
     var id = idOf(n);
@@ -75,13 +134,27 @@
     timer = 0;
   }
 
+  function nextPhoto() {
+    if (theme === "random") return takeRandom(current);
+    var n = current.n >= COUNT ? 1 : current.n + 1;
+    return { theme: theme, n: n };
+  }
+
+  function nextAfter(photo) {
+    if (theme === "random") return takeRandom(photo);
+    var n = photo.n >= COUNT ? 1 : photo.n + 1;
+    return { theme: theme, n: n };
+  }
+
   function schedule(currentToken) {
     clearTimer();
     if (document.hidden) return;
+    var ms = INTERVALS[interval];
+    if (!ms) return;
     timer = setTimeout(function () {
       if (currentToken !== token) return;
-      go((index + 1) % COUNT, true, 0);
-    }, DWELL_MS);
+      go(nextPhoto(), true, 0);
+    }, ms);
   }
 
   function hideOutgoing(outgoing) {
@@ -132,33 +205,42 @@
     });
   }
 
-  function go(nextIndex, animate, attempt) {
-    if (attempt >= COUNT) return;
+  function go(photo, animate, attempt) {
+    if (attempt >= 20) return;
     var currentToken = ++token;
     clearTimer();
     var incoming = slides[1 - shown];
     var outgoing = slides[shown];
-    var img = assign(incoming, theme, nextIndex + 1);
+    var img = assign(incoming, photo.theme, photo.n);
     whenReady(img).then(function () {
       if (currentToken !== token) return;
       shown = 1 - shown;
-      index = nextIndex;
+      current = photo;
       return fadeIn(incoming, outgoing, animate && !motion.matches, currentToken);
     }).then(function () {
       if (currentToken !== token) return;
       schedule(currentToken);
     }).catch(function () {
       if (currentToken !== token) return;
-      go((nextIndex + 1) % COUNT, animate, attempt + 1);
+      go(nextAfter(photo), animate, attempt + 1);
     });
   }
 
-  select.addEventListener("change", function () {
-    var value = select.value;
+  themeSelect.addEventListener("change", function () {
+    var value = themeSelect.value;
     if (THEMES.indexOf(value) === -1 || value === theme) return;
     theme = value;
-    try { localStorage.setItem(STORAGE_KEY, value); } catch (err) {}
-    go(0, true, 0);
+    try { localStorage.setItem(THEME_KEY, value); } catch (err) {}
+    var photo = value === "random" ? beginRandom(current) : { theme: value, n: 1 };
+    go(photo, true, 0);
+  });
+
+  intervalSelect.addEventListener("change", function () {
+    var value = intervalSelect.value;
+    if (!Object.prototype.hasOwnProperty.call(INTERVALS, value) || value === interval) return;
+    interval = value;
+    try { localStorage.setItem(INTERVAL_KEY, value); } catch (err) {}
+    schedule(token);
   });
 
   document.addEventListener("visibilitychange", function () {
@@ -166,5 +248,5 @@
     else schedule(token);
   });
 
-  go(0, false, 0);
+  go(theme === "random" ? beginRandom(null) : { theme: theme, n: 1 }, false, 0);
 })();
