@@ -13,7 +13,7 @@ import {
   scaledHeight,
   variantKey,
   variantPlan,
-} from "../public/plan.js";
+} from "../../public/plan.js";
 
 var LOCK_KEY = "jobs/lock.json";
 var JOB_KEY = "jobs/active.json";

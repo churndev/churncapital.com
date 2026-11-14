@@ -2,8 +2,8 @@ import { createCodecs } from "./codecs.js";
 import { processIncoming } from "./process.js";
 
 export default {
-  async fetch(request, env) {
-    return env.ASSETS.fetch(request);
+  async fetch() {
+    return new Response("Not found", { status: 404, headers: { "cache-control": "no-store" } });
   },
   async scheduled(controller, env, ctx) {
     ctx.waitUntil(runCron(env));

@@ -1,10 +1,9 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  // Homepage static assets, plus the drop-in encoder cron.
+  // Assets-only Worker for the homepage. Do not add a script, cron, or R2 binding here.
+  // The drop-in encoder is workers/dropin/ and is disabled — requires Workers Paid.
   // Do not add routes or custom domains here. Attach domains in the dashboard.
-  // Do not deploy until the private bucket churncapital-masters exists.
   "name": "churncapital-com",
-  "main": "src/index.js",
   "compatibility_date": "2026-11-14",
   "observability": {
     "enabled": true,
@@ -18,20 +17,6 @@
     }
   },
   "assets": {
-    "directory": "./public",
-    "binding": "ASSETS"
-  },
-  "triggers": {
-    "crons": ["* * * * *"]
-  },
-  "r2_buckets": [
-    {
-      "binding": "PUBLIC_BUCKET",
-      "bucket_name": "churncapital-assets"
-    },
-    {
-      "binding": "MASTERS_BUCKET",
-      "bucket_name": "churncapital-masters"
-    }
-  ]
+    "directory": "./public"
+  }
 }

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { imageDimensions } from "../src/dimensions.js";
+import { imageDimensions } from "../workers/dropin/dimensions.js";
 
 function png(width, height) {
   const bytes = new Uint8Array(24);

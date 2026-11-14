@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { imageDimensions } from "../src/dimensions.js";
-import { processIncoming } from "../src/process.js";
+import { imageDimensions } from "../workers/dropin/dimensions.js";
+import { processIncoming } from "../workers/dropin/process.js";
 import { memoryBucket } from "./bucket.js";
 import { createNodeCodecs } from "./node-codecs.js";
 

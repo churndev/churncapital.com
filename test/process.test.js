@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { IMAGE_CACHE, MANIFEST_CACHE, MAX_INPUT_BYTES } from "../public/plan.js";
-import { processIncoming } from "../src/process.js";
+import { processIncoming } from "../workers/dropin/process.js";
 import { memoryBucket } from "./bucket.js";
 
 function png(width, height) {

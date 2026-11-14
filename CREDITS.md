@@ -8,7 +8,7 @@ The twenty photographs below were scaled with Lanczos. Nothing was cropped, reco
 
 They are not in the repo. The public files are `images/<theme>/<id>-<width>.avif` and `.webp` in the R2 bucket `churncapital-assets`, at 480, 960, 1280, 1600, 1920, 2560, and 3840.
 
-A photograph added later by dropping a file into the private bucket is encoded by the Worker: Lanczos3, AVIF quality 43 speed 8 (jSquash, not SVT-AV1), WebP quality 75, and only the ladder widths that do not exceed the source. That job does not know the license. Add the new photograph to this file before publishing it, and you can set `credit` in the manifest afterward. The homepage still does not show a credit.
+A photograph added later is encoded on your machine with `scripts/add-photo.js`: Lanczos3, AVIF quality 43 speed 8 (jSquash, not SVT-AV1), WebP quality 75, and only the ladder widths that do not exceed the source. The automatic drop-in Worker is disabled until the account is on Workers Paid. The script does not know the license. Add the new photograph to this file before publishing it, and you can set `credit` in the manifest afterward. The homepage still does not show a credit.
 
 Where the note says "Commons 3840 JPEG rendition," the master was Wikimedia Commons' JPEG of the public-domain TIFF at 3840 pixels wide. The output widths were encoded from that JPEG. The TIFF itself is not stored here.
 

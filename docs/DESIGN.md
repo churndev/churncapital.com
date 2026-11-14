@@ -2,7 +2,7 @@
 
 **Standing rule.** Every change starts by reading this file and `README.md`. On every feature change, rewrite both so they describe the code as it is. Rewrite the How it works summary at the top of `README.md` in the same pull request whenever anything about how the system works changes. Do not append a note instead of editing the parts that are now wrong.
 
-The summary of the buckets, the cron, caching, drop-in, and rollback is in `README.md`. This file is the page.
+The summary of the buckets, the manual upload, the disabled drop-in, caching, and rollback is in `README.md`. This file is the page.
 
 ## Purpose
 
@@ -33,7 +33,7 @@ The live manifest, in order, is:
 5. `Space` (`space`)
 6. `City` (`city`)
 
-A theme added by a drop-in appears at the end, with the folder slug as its id and a title-cased name, unless that id already exists.
+A theme added in the manifest appears at the end, with the folder slug as its id and a title-cased name, unless that id already exists.
 
 ### How often the wallpaper changes
 
@@ -129,7 +129,7 @@ Only public-domain photographs are used. CC BY, CC BY-SA, Unsplash, and Pexels a
 
 Do not add photographs from `github.com/dharmx/walls` (no license) or `github.com/lordofhunger/wallpapers` (personal non-commercial only).
 
-`CREDITS.md` at the repo root lists every photograph that was published with the original set: source URL, author, license, and what was changed. It is not in the served directory. A drop-in does not update it. The person who adds a photograph does.
+`CREDITS.md` at the repo root lists every photograph that was published with the original set: source URL, author, license, and what was changed. It is not in the served directory. Adding a photograph does not update it. The person who adds a photograph does.
 
 ## Files
 
@@ -146,7 +146,8 @@ Not served:
 - `docs/DESIGN.md`
 - `CREDITS.md`
 - `wrangler.jsonc`
-- `src/` (the Worker cron; it is not a page)
+- `workers/dropin/` (the encoder Worker; disabled, not deployed)
+- `scripts/add-photo.js` (local encode; not served)
 
 Photographs and the icon files are not in the repo. See `README.md`.
 
@@ -158,11 +159,11 @@ Photographs and the icon files are not in the repo. See `README.md`.
 
 ## Hosting
 
-Production is live at `https://churncapital.com` on the Worker `churncapital-com`. The photograph host is `https://assets.churncapital.com` on the public bucket. The drop-in bucket, the cron, and the deploy that is still to be done are described in `README.md`.
+Production is live at `https://churncapital.com` on the assets-only Worker `churncapital-com`. The photograph host is `https://assets.churncapital.com` on the public bucket. New photographs are encoded locally and uploaded to that bucket. The automatic drop-in in `workers/dropin/` is disabled — requires Workers Paid. The steps are in `README.md`.
 
 - `assets.directory` is `./public`.
 - `compatibility_date` `2026-11-14`.
-- The Worker script serves static assets for requests that are not files, and its scheduled handler encodes drop-ins.
+- No Worker script, no cron, and no R2 binding on `churncapital-com`.
 - No `routes` and no custom domains in `wrangler.jsonc`.
 - Observability is on: logs at a head sampling rate of 1, traces at 0.01.
 - The apex is production.
@@ -191,4 +192,5 @@ The sections above are the current behavior. This log is history.
 | Nov 14 2026 | Slide speed | Slide Show speed is a third control, shown only during Slide Show. The choices are 3, 5, 8, 10, and 15 seconds. The out-of-box speed is 5 seconds. The crossfade is 1 second during Slide Show and 1.5 seconds otherwise. |
 | Nov 14 2026 | Swipe and arrow navigation | A horizontal swipe or the arrow keys move to the previous or next photograph. Left returns to the photograph that was actually shown, including in Random. A manual change restarts the timer. |
 | Nov 14 2026 | Site icon | Owner asked for a site icon. An original palm-and-sun mark was chosen. |
-| Nov 14 2026 | Photographs move to R2 | The page loads a manifest from assets.churncapital.com and builds the slides from it. Icons move there too. Originals for new photographs go in a private bucket, and a cron encodes them. The visible theme names come from the manifest. The Florida label there is Florida. |
+| Nov 14 2026 | Photographs move to R2 | The page loads a manifest from assets.churncapital.com and builds the slides from it. Icons move there too. The visible theme names come from the manifest. The Florida label there is Florida. |
+| Nov 14 2026 | Drop-in stays undeployed | The account stays on Workers Free. `churncapital-com` is assets-only. New photographs are encoded with `scripts/add-photo.js` and uploaded to the public bucket. The encoder cron lives in `workers/dropin/` and is disabled until Workers Paid. |
