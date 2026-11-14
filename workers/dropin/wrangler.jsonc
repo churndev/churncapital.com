@@ -1,0 +1,35 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  // DISABLED — requires Workers Paid. Do not deploy.
+  // This is not the production Worker. Production is the repo-root wrangler.jsonc
+  // (name churncapital-com), which is assets-only and has no cron and no R2 binding.
+  // Enable only after the account is on Workers Paid and the private bucket exists:
+  //   npx wrangler deploy --config workers/dropin/wrangler.jsonc
+  "name": "churncapital-dropin",
+  "main": "index.js",
+  "compatibility_date": "2026-11-14",
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.01
+    }
+  },
+  "triggers": {
+    "crons": ["* * * * *"]
+  },
+  "r2_buckets": [
+    {
+      "binding": "PUBLIC_BUCKET",
+      "bucket_name": "churncapital-assets"
+    },
+    {
+      "binding": "MASTERS_BUCKET",
+      "bucket_name": "churncapital-masters"
+    }
+  ]
+}

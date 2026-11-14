@@ -1,2 +1,9 @@
 .wrangler/
 node_modules/
+test-results/
+playwright-report/
+blob-report/
+public/images/**
+public/favicon.ico
+public/apple-touch-icon.png
+public/favicon.svg
