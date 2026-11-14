@@ -4,18 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Churn Capital</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <picture class="slide" id="slide-a">
 <source type="image/avif">
 <source type="image/webp">
-<img alt="" sizes="100vw">
+<img alt="">
 </picture>
 <picture class="slide" id="slide-b">
 <source type="image/avif">
 <source type="image/webp">
-<img alt="" sizes="100vw">
+<img alt="">
 </picture>
 <div class="controls">
 <label class="control">
@@ -32,13 +35,24 @@
 <label class="control">
 <span class="vh">How often the wallpaper changes</span>
 <select id="interval">
+<option value="slideshow" selected>Slide Show</option>
 <option value="1">1 minute</option>
-<option value="3" selected>3 minutes</option>
+<option value="3">3 minutes</option>
 <option value="5">5 minutes</option>
 <option value="10">10 minutes</option>
 <option value="30">30 minutes</option>
 <option value="60">1 hour</option>
 <option value="never">Never</option>
+</select>
+</label>
+<label class="control" id="speed-control">
+<span class="vh">Slide speed</span>
+<select id="speed">
+<option value="3">3 seconds</option>
+<option value="5" selected>5 seconds</option>
+<option value="8">8 seconds</option>
+<option value="10">10 seconds</option>
+<option value="15">15 seconds</option>
 </select>
 </label>
 </div>

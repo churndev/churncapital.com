@@ -3,6 +3,7 @@ html, body {
   height: 100%;
   background: #000;
   overflow: hidden;
+  touch-action: none;
 }
 
 .slide {
@@ -13,7 +14,7 @@ html, body {
   margin: 0;
   opacity: 0;
   z-index: 0;
-  transition: opacity 1.5s ease;
+  transition: opacity var(--fade, 1.5s) ease;
 }
 
 .slide img {
@@ -43,6 +44,7 @@ html, body {
   align-items: flex-end;
   gap: 0.4rem;
   max-width: calc(100vw - 2rem);
+  touch-action: manipulation;
 }
 
 .control {
