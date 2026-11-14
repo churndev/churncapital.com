@@ -1,7 +1,10 @@
 {
-  // Assets-only Worker. Do not add routes or custom domains here.
-  // Attach domains in the Cloudflare dashboard. There is no Worker script.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Homepage static assets, plus the drop-in encoder cron.
+  // Do not add routes or custom domains here. Attach domains in the dashboard.
+  // Do not deploy until the private bucket churncapital-masters exists.
   "name": "churncapital-com",
+  "main": "src/index.js",
   "compatibility_date": "2026-11-14",
   "observability": {
     "enabled": true,
@@ -15,6 +18,20 @@
     }
   },
   "assets": {
-    "directory": "./public"
-  }
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "triggers": {
+    "crons": ["* * * * *"]
+  },
+  "r2_buckets": [
+    {
+      "binding": "PUBLIC_BUCKET",
+      "bucket_name": "churncapital-assets"
+    },
+    {
+      "binding": "MASTERS_BUCKET",
+      "bucket_name": "churncapital-masters"
+    }
+  ]
 }

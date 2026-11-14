@@ -1,0 +1,409 @@
+{
+  "version": 1,
+  "base": "https://assets.churncapital.com",
+  "widths": [
+    480,
+    960,
+    1280,
+    1600,
+    1920,
+    2560,
+    3840
+  ],
+  "formats": [
+    "avif",
+    "webp"
+  ],
+  "themes": [
+    {
+      "id": "florida",
+      "name": "Florida",
+      "images": [
+        {
+          "id": "01",
+          "width": 3840,
+          "height": 2560,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "East Beach on Garden Key, Dry Tortugas National Park, Florida",
+          "credit": "U.S. National Park Service / D. Diaz",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "02",
+          "width": 3840,
+          "height": 2560,
+          "fit": "cover",
+          "objectPosition": "70% 50%",
+          "alt": "East Beach and Bush Key, Dry Tortugas National Park, Florida",
+          "credit": "U.S. National Park Service / D. Diaz",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "03",
+          "width": 3840,
+          "height": 3016,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Empty beach at Miami Beach, Florida",
+          "credit": "Carol M. Highsmith / Library of Congress",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "04",
+          "width": 3840,
+          "height": 2560,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Tall grass, beach, and water at sunset, Gulf Islands National Seashore, Florida",
+          "credit": "U.S. National Park Service",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ocean",
+      "name": "Ocean",
+      "images": [
+        {
+          "id": "01",
+          "width": 3840,
+          "height": 2560,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Sea stack and cove on the Olympic National Park coast",
+          "credit": "U.S. National Park Service, Olympic National Park / D. Archuleta, 2015",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "02",
+          "width": 3840,
+          "height": 2560,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Rocky cove and sea stack on the Olympic National Park coast",
+          "credit": "U.S. National Park Service, Olympic National Park / D. Archuleta, 2015",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "03",
+          "width": 3840,
+          "height": 2552,
+          "fit": "cover",
+          "objectPosition": "70% 50%",
+          "alt": "Kalaloch beach with driftwood and bluffs, Olympic National Park",
+          "credit": "U.S. National Park Service, Olympic National Park / R. McKenna, March 2015",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "04",
+          "width": 3840,
+          "height": 2880,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Wilderness coast north of the Ozette triangle, Olympic National Park",
+          "credit": "U.S. National Park Service, Olympic National Park / C. Bubar, July 2014",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mountains",
+      "name": "Mountains",
+      "images": [
+        {
+          "id": "01",
+          "width": 3840,
+          "height": 2560,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Grand Teton and Mount Owen in winter, Grand Teton National Park, Wyoming",
+          "credit": "U.S. National Park Service / A. Falgoust",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "02",
+          "width": 3840,
+          "height": 2560,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Morning light on Grand Teton, Grand Teton National Park, Wyoming",
+          "credit": "U.S. National Park Service / Adams",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "03",
+          "width": 3840,
+          "height": 2560,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Avalanche Lake in a U-shaped valley, Glacier National Park, Montana",
+          "credit": "U.S. National Park Service / Tim Rains",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "04",
+          "width": 3840,
+          "height": 2560,
+          "fit": "cover",
+          "objectPosition": "35% 50%",
+          "alt": "Bridalveil Fall, Yosemite National Park, California",
+          "credit": "U.S. National Park Service / Michael Hernandez",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        }
+      ]
+    },
+    {
+      "id": "space",
+      "name": "Space",
+      "images": [
+        {
+          "id": "01",
+          "width": 3840,
+          "height": 3646,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "The Bubble Nebula, NGC 7635, photographed by the Hubble Space Telescope",
+          "credit": "NASA / Hubble Space Telescope",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "02",
+          "width": 3840,
+          "height": 3840,
+          "fit": "contain",
+          "objectPosition": "50% 50%",
+          "alt": "Western hemisphere of Earth, Blue Marble 2012 composite",
+          "credit": "NASA",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "03",
+          "width": 3840,
+          "height": 1964,
+          "fit": "contain",
+          "objectPosition": "50% 50%",
+          "alt": "Saturn and its rings in natural color, photographed by Cassini",
+          "credit": "NASA / Cassini",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "04",
+          "width": 3840,
+          "height": 2608,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "A dust-and-gas landscape in the Carina Nebula, photographed by the Hubble Space Telescope",
+          "credit": "NASA / Hubble Space Telescope",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        }
+      ]
+    },
+    {
+      "id": "city",
+      "name": "City",
+      "images": [
+        {
+          "id": "01",
+          "width": 3840,
+          "height": 3052,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Skyline of Boston, Massachusetts",
+          "credit": "Carol M. Highsmith / Library of Congress",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "02",
+          "width": 3840,
+          "height": 2998,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Skyline of Denver, Colorado",
+          "credit": "Carol M. Highsmith / Library of Congress",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "03",
+          "width": 3840,
+          "height": 3040,
+          "fit": "cover",
+          "objectPosition": "50% 50%",
+          "alt": "Skyline of Houston, Texas",
+          "credit": "Carol M. Highsmith / Library of Congress",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        },
+        {
+          "id": "04",
+          "width": 3840,
+          "height": 2972,
+          "fit": "cover",
+          "objectPosition": "50% 35%",
+          "alt": "Skyline of Philadelphia, Pennsylvania",
+          "credit": "Carol M. Highsmith / Library of Congress",
+          "widths": [
+            480,
+            960,
+            1280,
+            1600,
+            1920,
+            2560,
+            3840
+          ]
+        }
+      ]
+    }
+  ]
+}
