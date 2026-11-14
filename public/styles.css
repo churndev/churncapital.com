@@ -1,0 +1,83 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+.slide {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 1.5s ease;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.slide.is-on {
+  opacity: 1;
+}
+
+.slide.instant {
+  transition: none;
+}
+
+.theme {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 3;
+  opacity: 0.38;
+  transition: opacity 0.2s ease;
+}
+
+.theme:hover,
+.theme:focus-within {
+  opacity: 1;
+}
+
+.theme select {
+  color-scheme: dark;
+  font: 13px/1.2 system-ui, sans-serif;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  padding: 0.45rem 0.55rem;
+  max-width: calc(100vw - 2rem);
+  cursor: pointer;
+}
+
+.theme select:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide,
+  .theme {
+    transition: none;
+  }
+}
