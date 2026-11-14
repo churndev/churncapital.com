@@ -3,6 +3,7 @@ html, body {
   height: 100%;
   background: #000;
   overflow: hidden;
+  touch-action: none;
 }
 
 .slide {
@@ -13,7 +14,7 @@ html, body {
   margin: 0;
   opacity: 0;
   z-index: 0;
-  transition: opacity 1.5s ease;
+  transition: opacity var(--fade, 1.5s) ease;
 }
 
 .slide img {
@@ -32,21 +33,31 @@ html, body {
   transition: none;
 }
 
-.theme {
+.controls {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
   z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 0.4rem;
+  max-width: calc(100vw - 2rem);
+  touch-action: manipulation;
+}
+
+.control {
   opacity: 0.38;
   transition: opacity 0.2s ease;
 }
 
-.theme:hover,
-.theme:focus-within {
+.control:hover,
+.control:focus-within {
   opacity: 1;
 }
 
-.theme select {
+.control select {
   color-scheme: dark;
   font: 13px/1.2 system-ui, sans-serif;
   color: #fff;
@@ -58,7 +69,7 @@ html, body {
   cursor: pointer;
 }
 
-.theme select:focus-visible {
+.control select:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
@@ -77,7 +88,7 @@ html, body {
 
 @media (prefers-reduced-motion: reduce) {
   .slide,
-  .theme {
+  .control {
     transition: none;
   }
 }
